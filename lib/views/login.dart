@@ -73,100 +73,114 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Form(
-            key: _formkey,
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 80, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextFormField(
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        label: Text("Email"),
-                        hintText: "Enter your email"),
-                    textCapitalization: TextCapitalization.none,
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (!isValidEmail(value)) {
-                        return 'Please input valid email';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      enteredEmail = value!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  TextFormField(
-                    controller: passController,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        label: Text("Password"),
-                        hintText: "Enter valid password"),
-                    validator: (value) {
-                      if (!isValidPassword(value)) {
-                        return 'Please enter valid password';
-                      } else {
+      backgroundColor: Colors.grey[300],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Form(
+              key: _formkey,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    const Text(
+                      'Hello Again!',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'Welcome back, you\'ve been missed!',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    TextFormField(
+                      controller: emailController,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          label: Text("Email"),
+                          hintText: "Enter your email"),
+                      textCapitalization: TextCapitalization.none,
+                      autocorrect: false,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (!isValidEmail(value)) {
+                          return 'Please input valid email';
+                        }
                         return null;
-                      }
-                    },
-                    onSaved: (value) {
-                      enteredPassword = value!;
-                    },
-                    obscureText: true,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 48,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary),
-                      onPressed: () {
-                        submit();
                       },
-                      child: Text(
-                        _isLogin ? 'Login' : 'Sign-Up',
-                        style: const TextStyle(
-                          color: Colors.white,
+                      onSaved: (value) {
+                        enteredEmail = value!;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    TextFormField(
+                      controller: passController,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Text("Password"),
+                          hintText: "Enter valid password"),
+                      validator: (value) {
+                        if (!isValidPassword(value)) {
+                          return 'Please enter valid password';
+                        } else {
+                          return null;
+                        }
+                      },
+                      onSaved: (value) {
+                        enteredPassword = value!;
+                      },
+                      obscureText: true,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 48,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary),
+                        onPressed: () {
+                          submit();
+                        },
+                        child: Text(
+                          _isLogin ? 'Login' : 'Sign-Up',
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text('Already has an account?'),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/signup');
-                          },
-                          child: const Text('Register'))
-                    ],
-                  )
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text('Already has an account?'),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(
+                                  context, '/signup');
+                            },
+                            child: const Text('Register'))
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
