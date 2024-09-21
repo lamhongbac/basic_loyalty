@@ -85,66 +85,83 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(
-                      height: 25,
-                    ),
+                    const SizedBox(height: 25),
                     const Text(
                       'Hello Again!',
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     const Text(
                       'Welcome back, you\'ve been missed!',
-                      style: TextStyle(
-                        fontSize: 20,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    // email TextFormField
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: TextFormField(
+                            controller: emailController,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Email",
+                            ),
+                            textCapitalization: TextCapitalization.none,
+                            autocorrect: false,
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (!isValidEmail(value)) {
+                                return 'Please input valid email';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              enteredEmail = value!;
+                            },
+                          ),
+                        ),
                       ),
                     ),
-                    TextFormField(
-                      controller: emailController,
-                      decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          label: Text("Email"),
-                          hintText: "Enter your email"),
-                      textCapitalization: TextCapitalization.none,
-                      autocorrect: false,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (!isValidEmail(value)) {
-                          return 'Please input valid email';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        enteredEmail = value!;
-                      },
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: TextFormField(
+                            controller: passController,
+                            obscureText: true,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Password",
+                            ),
+                            validator: (value) {
+                              if (!isValidPassword(value)) {
+                                return 'Please enter valid password';
+                              } else {
+                                return null;
+                              }
+                            },
+                            onSaved: (value) {
+                              enteredPassword = value!;
+                            },
+                          ),
+                        ),
+                      ),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    TextFormField(
-                      controller: passController,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          label: Text("Password"),
-                          hintText: "Enter valid password"),
-                      validator: (value) {
-                        if (!isValidPassword(value)) {
-                          return 'Please enter valid password';
-                        } else {
-                          return null;
-                        }
-                      },
-                      onSaved: (value) {
-                        enteredPassword = value!;
-                      },
-                      obscureText: true,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     SizedBox(
                       height: 48,
                       width: double.infinity,
@@ -159,24 +176,29 @@ class _LoginScreenState extends State<LoginScreen> {
                           _isLogin ? 'Login' : 'Sign-Up',
                           style: const TextStyle(
                             color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text('Already has an account?'),
+                        const Text('Not a member?'),
                         TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(
-                                  context, '/signup');
-                            },
-                            child: const Text('Register'))
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/signup');
+                          },
+                          child: const Text(
+                            'Register now',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ],
                     )
                   ],
