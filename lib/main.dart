@@ -3,6 +3,7 @@ import 'package:basic_loyalty/views/change_password.dart';
 import 'package:basic_loyalty/views/home.dart';
 import 'package:basic_loyalty/views/login.dart';
 import 'package:basic_loyalty/views/password_recover.dart';
+import 'package:basic_loyalty/views/sign_up.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,11 +23,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-          '/':(context)=>const CheckUser(),
-          '/home': (context) => const HomeScreen(),      
-          '/login': (context) => const LoginScreen(),
-          '/forgot-password': (context) => const PasswordRecoverScreen(),                    
-          '/change-password': (context) => const ChangePasswordScreen(),
+        '/': (context) => const CheckUser(),
+        '/home': (context) => const HomeScreen(),
+        '/signup': (context) => const SignUpScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/forgot-password': (context) => const PasswordRecoverScreen(),
+        '/change-password': (context) => const ChangePasswordScreen(),
       },
     );
   }
