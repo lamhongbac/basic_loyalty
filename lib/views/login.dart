@@ -1,5 +1,6 @@
 import 'package:basic_loyalty/controllers/auth_services.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -75,27 +76,33 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
+        child: Center(
+          child: SingleChildScrollView(
             child: Form(
               key: _formkey,
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 25),
-                    const Text(
+                    const Icon(
+                      Icons.loyalty_rounded,
+                      size: 100,
+                    ),
+                    const SizedBox(height: 50),
+                    Text(
                       'Hello Again!',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.bebasNeue(
+                        fontSize: 52,
+                      ),
                     ),
                     const SizedBox(height: 10),
                     const Text(
                       'Welcome back, you\'ve been missed!',
                       style: TextStyle(fontSize: 20),
                     ),
+                    const SizedBox(height: 50),
                     // email TextFormField
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -162,22 +169,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    SizedBox(
-                      height: 48,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.primary),
-                        onPressed: () {
-                          submit();
-                        },
-                        child: Text(
-                          _isLogin ? 'Login' : 'Sign-Up',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: SizedBox(
+                        height: 48,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary),
+                          onPressed: () {
+                            submit();
+                          },
+                          child: Text(
+                            _isLogin ? 'Login' : 'Sign-Up',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),
