@@ -73,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -80,12 +81,11 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SingleChildScrollView(
             child: Form(
               key: _formkey,
-              child: Padding(
+              child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
+                  children: <Widget>[
                     const Icon(
                       Icons.loyalty_rounded,
                       size: 100,
@@ -103,36 +103,35 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(fontSize: 20),
                     ),
                     const SizedBox(height: 50),
+
                     // email TextFormField
-                    Padding(
+                    Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: TextFormField(
-                            controller: emailController,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Email",
-                            ),
-                            textCapitalization: TextCapitalization.none,
-                            autocorrect: false,
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (!isValidEmail(value)) {
-                                return 'Please input valid email';
-                              }
-                              return null;
-                            },
-                            onSaved: (value) {
-                              enteredEmail = value!;
-                            },
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: TextFormField(
+                          controller: emailController,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Email",
                           ),
+                          textCapitalization: TextCapitalization.none,
+                          autocorrect: false,
+                          keyboardType: TextInputType.emailAddress,
+                          // validator: (value) {
+                          //   if (!isValidEmail(value)) {
+                          //     return 'Please input valid email';
+                          //   }
+                          //   return null;
+                          // },
+                          // onSaved: (value) {
+                          //   enteredEmail = value!;
+                          // },
                         ),
                       ),
                     ),
@@ -169,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Padding(
+                    Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: SizedBox(
                         height: 48,
@@ -179,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               backgroundColor:
                                   Theme.of(context).colorScheme.primary),
                           onPressed: () {
-                            submit();
+                            //submit();
                           },
                           child: Text(
                             _isLogin ? 'Login' : 'Sign-Up',
@@ -196,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         const Text('Not a member?'),
                         TextButton(
                           onPressed: () {
