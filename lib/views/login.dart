@@ -1,5 +1,9 @@
+import 'package:basic_loyalty/components/rounded_button.dart';
+import 'package:basic_loyalty/components/rounded_text_form_field.dart';
+import 'package:basic_loyalty/components/text_form_field_container.dart';
 import 'package:basic_loyalty/controllers/auth_services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -13,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formkey = GlobalKey<FormState>();
   var enteredEmail = '';
   var enteredPassword = '';
-  var _isLogin = true;
   void submit() {
     final isValid = _formkey.currentState!.validate();
 
@@ -29,12 +32,10 @@ class _LoginScreenState extends State<LoginScreen> {
     AuthService.loginWithEmail(emailController.text, passController.text)
         .then((value) {
       if (value == 'LoginSuccessful') {
-        _isLogin = true;
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Login Successful')));
         Navigator.pushReplacementNamed(context, '/home');
       } else {
-        _isLogin = false;
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
             'Login failed ',
@@ -73,7 +74,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
@@ -86,110 +86,49 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Icon(
-                      Icons.loyalty_rounded,
-                      size: 100,
-                    ),
-                    const SizedBox(height: 50),
-                    Text(
-                      'Hello Again!',
-                      style: GoogleFonts.bebasNeue(
-                        fontSize: 52,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Welcome back, you\'ve been missed!',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    const SizedBox(height: 50),
-
+                    // const Icon(
+                    //   Icons.loyalty_rounded,
+                    //   size: 100,
+                    // ),
+                    SvgPicture.asset("assets/icons/login.svg"),
+                    const SizedBox(height: 20),
+                    
                     // email TextFormField
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextFormField(
-                          controller: emailController,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Email",
-                          ),
-                          textCapitalization: TextCapitalization.none,
-                          autocorrect: false,
-                          keyboardType: TextInputType.emailAddress,
-                          // validator: (value) {
-                          //   if (!isValidEmail(value)) {
-                          //     return 'Please input valid email';
-                          //   }
-                          //   return null;
-                          // },
-                          // onSaved: (value) {
-                          //   enteredEmail = value!;
-                          // },
-                        ),
-                      ),
+                    RoundedInputTextFormField(
+                      icon: Icons.person,
+                      hintText: "Your Email",
+                      controller: emailController,
+                      validator: (value) {
+                        if (!isValidEmail(value)) {
+                          return 'Please input valid email';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        enteredEmail = value!;
+                      },
+                    ),
+
+                    RoundedInputTextFormField(
+                      icon: Icons.lock,
+                      hintText: "Password",
+                      controller: passController,
+                      validator: (value) {
+                        if (!isValidPassword(value)) {
+                          return 'Please enter valid password';
+                        }
+                        else {
+                          return null;
+                        }
+                      },
+                      onSaved: (value) {
+                        enteredPassword = value!;
+                      },
                     ),
                     const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: TextFormField(
-                            controller: passController,
-                            obscureText: true,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Password",
-                            ),
-                            validator: (value) {
-                              if (!isValidPassword(value)) {
-                                return 'Please enter valid password';
-                              } else {
-                                return null;
-                              }
-                            },
-                            onSaved: (value) {
-                              enteredPassword = value!;
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: SizedBox(
-                        height: 48,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.primary),
-                          onPressed: () {
-                            //submit();
-                          },
-                          child: Text(
-                            _isLogin ? 'Login' : 'Sign-Up',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ),
+                    RoundedButton(
+                      text: "Login",
+                      press: submit,
                     ),
                     const SizedBox(height: 10),
                     Row(
