@@ -9,40 +9,42 @@ class ChangePasswordScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Change Password')),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Old Password',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Old Password',
+                ),
+                obscureText: true,
               ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 16),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'New Password',
+              const SizedBox(height: 16),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'New Password',
+                ),
+                obscureText: true,
               ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 16),
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Confirm New Password',
+              const SizedBox(height: 16),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Confirm New Password',
+                ),
+                obscureText: true,
               ),
-              obscureText: true,
-            ),
-            const SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {
-                // Placeholder for change password action
-              },
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(double.infinity, 48),
+              const SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: () {
+                  // Placeholder for change password action
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 48),
+                ),
+                child: const Text('Change Password'),
               ),
-              child: const Text('Change Password'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
