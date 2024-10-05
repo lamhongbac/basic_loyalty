@@ -1,4 +1,4 @@
-import 'package:basic_loyalty/views/detailed_profile.dart';
+import 'package:basic_loyalty/views/Account/detailed_profile.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {

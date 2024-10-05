@@ -1,6 +1,6 @@
-import 'package:basic_loyalty/views/change_password.dart';
-import 'package:basic_loyalty/views/password_recovery.dart';
-import 'package:basic_loyalty/views/sign_up.dart';
+import 'package:basic_loyalty/views/Account/change_password.dart';
+import 'package:basic_loyalty/views/Account/password_recovery.dart';
+import 'package:basic_loyalty/views/Account/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
