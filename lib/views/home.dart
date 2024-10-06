@@ -1,35 +1,56 @@
+import 'package:basic_loyalty/models/promotion_item.dart';
 import 'package:flutter/material.dart';
-import './user_header.dart';
-import './user_points.dart';
-import './overflow_bar.dart';
-import './promotions_grid.dart';
-import './bottom_navigation.dart';
+import '../widgets/header_widget.dart';  // Imports header widget
+import '../widgets/circle_button_widget.dart';  // Imports circular buttons for navigation
+import '../widgets/tab_bar_widget.dart';  // Imports custom tab bar (Promotion, Event, Referral)
+import '../widgets/promotion_list_widget.dart';  // Imports promotion list widget
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+  
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+ final List<PromotionItem> promotions = [
+    PromotionItem(title: 'Deal Mãi Kẹo Giảm Đến 50%', brand: 'Gigamall', imageUrl: 'assets/images/promo1.png', subtitle: ''),
+    PromotionItem(title: 'Ấm Áp Mùa Thu', brand: 'Uniqlo', imageUrl: 'assets/images/promo2.png', subtitle: ''),
+    // Add more items here
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Loyalty"),
-        // backgroundColor: Colors.white,
-        // iconTheme: const IconThemeData(color: Colors.black),
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.notifications),
-        //     onPressed: () {},
-        //     color: Colors.black,
-        //   ),
-        // ],
+        toolbarHeight: 80,
+        title: const HeaderWidget(),
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
-      body: const Column(
+      body: Column(
         children: [
-          UserHeader(),
-          UserPoints(),
-          OverflowBarExample(),
-          PromotionsGrid(),
-          BottomNavigation(),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CircleButtonWidget(icon: Icons.camera_alt, label: 'Snap'),
+              CircleButtonWidget(icon: Icons.card_giftcard, label: 'Redeem'),
+              CircleButtonWidget(icon: Icons.stars, label: 'Lucky Wheel'),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const TabBarWidget(),
+          Expanded(
+            child: PromotionListWidget(promotions: promotions),
+          ),
+        ],
+      ),
+      bottomNavigationBar: OverflowBar(
+        children: [
+          IconButton(icon: const Icon(Icons.home), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.car_rental), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.store), onPressed: () {}),
+          IconButton(icon: const Icon(Icons.person), onPressed: () {}),
         ],
       ),
     );
