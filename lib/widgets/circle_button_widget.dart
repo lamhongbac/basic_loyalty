@@ -4,7 +4,7 @@ class CircleButtonWidget extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const CircleButtonWidget({required this.icon, required this.label});
+  const CircleButtonWidget({super.key, required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {

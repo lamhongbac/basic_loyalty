@@ -1,5 +1,5 @@
 import 'package:basic_loyalty/views/Account/change_password.dart';
-import 'package:basic_loyalty/views/home.dart';
+import 'package:basic_loyalty/views/Home/home.dart';
 import 'package:basic_loyalty/views/Account/login.dart';
 import 'package:basic_loyalty/views/Account/password_recovery.dart';
 import 'package:basic_loyalty/views/Account/sign_up.dart';

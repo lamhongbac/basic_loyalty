@@ -1,9 +1,10 @@
 import 'package:basic_loyalty/models/promotion_item.dart';
+import 'package:basic_loyalty/views/bottom_navigation.dart';
 import 'package:flutter/material.dart';
-import '../widgets/header_widget.dart';  // Imports header widget
-import '../widgets/circle_button_widget.dart';  // Imports circular buttons for navigation
-import '../widgets/tab_bar_widget.dart';  // Imports custom tab bar (Promotion, Event, Referral)
-import '../widgets/promotion_list_widget.dart';  // Imports promotion list widget
+import '../../widgets/header_widget.dart';  // Imports header widget
+import '../../widgets/circle_button_widget.dart';  // Imports circular buttons for navigation
+import '../../widgets/tab_bar_widget.dart';  // Imports custom tab bar (Promotion, Event, Referral)
+import '../../widgets/promotion_list_widget.dart';  // Imports promotion list widget
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -45,14 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: OverflowBar(
-        children: [
-          IconButton(icon: const Icon(Icons.home), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.car_rental), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.store), onPressed: () {}),
-          IconButton(icon: const Icon(Icons.person), onPressed: () {}),
-        ],
-      ),
+      bottomNavigationBar: const NavigationExample(),
     );
   }
 }

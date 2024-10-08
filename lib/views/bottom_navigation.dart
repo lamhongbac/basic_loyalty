@@ -1,19 +1,43 @@
 import 'package:flutter/material.dart';
 
-class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({super.key});
+class NavigationExample extends StatefulWidget {
+  const NavigationExample({super.key});
+
+  @override
+  State<NavigationExample> createState() => _NavigationExampleState();
+}
+
+class _NavigationExampleState extends State<NavigationExample> {
+  int currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "GigaMall"),
-        BottomNavigationBarItem(icon: Icon(Icons.book), label: "Book Grab"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.store), label: "Store Directory"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle), label: "My Account"),
-      ],
-    );
+    return NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: Colors.amber,
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Badge(child: Icon(Icons.notifications_sharp)),
+            label: 'Notifications',
+          ),
+          NavigationDestination(
+            icon: Badge(
+              label: Text('2'),
+              child: Icon(Icons.messenger_sharp),
+            ),
+            label: 'Messages',
+          ),
+        ],
+      );
   }
 }
