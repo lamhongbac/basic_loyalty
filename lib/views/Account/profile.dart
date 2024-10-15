@@ -53,15 +53,6 @@ class ProfileScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Mall'),
-          BottomNavigationBarItem(icon: Icon(Icons.directions_car), label: 'Book a Ride'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Profile'),
-        ],
-        currentIndex: 2,
-        onTap: (index) {},
-      ),
     );
   }
 

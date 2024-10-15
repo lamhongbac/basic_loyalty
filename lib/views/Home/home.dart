@@ -1,5 +1,4 @@
 import 'package:basic_loyalty/models/promotion_item.dart';
-import 'package:basic_loyalty/views/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/header_widget.dart';  // Imports header widget
 import '../../widgets/circle_button_widget.dart';  // Imports circular buttons for navigation
@@ -46,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: const NavigationExample(),
     );
   }
 }

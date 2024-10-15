@@ -3,6 +3,7 @@ import 'package:basic_loyalty/views/Home/home.dart';
 import 'package:basic_loyalty/views/Account/login.dart';
 import 'package:basic_loyalty/views/Account/password_recovery.dart';
 import 'package:basic_loyalty/views/Account/sign_up.dart';
+import 'package:basic_loyalty/views/navigation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: const NavigationExample(),
       routes: {
         // '/': (context) => const CheckUser(),
         '/home': (context) => const HomeScreen(),
