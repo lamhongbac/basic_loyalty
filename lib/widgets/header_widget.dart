@@ -10,7 +10,7 @@ class HeaderWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.g_translate, size: 40), // Placeholder for logo
+            Icon(Icons.apple, size: 40), // Placeholder for logo
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
